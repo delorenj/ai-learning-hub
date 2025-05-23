@@ -2,25 +2,50 @@
 
 This project is a web-based platform for the Immersive AI Development Workshop. It provides a hub-like interface for accessing various AI workflows and learning resources, along with a RAG-powered chatbot assistant named "Jarad, kinda Chatbot."
 
+## Prerequisites
+
+- Node.js 18 or higher
+- Docker (for containerized deployment)
+- [mise](https://mise.jdx.dev/) (recommended for task automation)
+
 ## Getting Started
 
-First, install the dependencies:
+### Using mise (Recommended)
+
+First, install mise if you haven't already:
+
+```bash
+curl https://mise.jdx.dev/install.sh | sh
+```
+
+Then, install dependencies and start the development server:
+
+```bash
+mise install  # Install dependencies
+mise dev      # Start development server
+```
+
+### Using npm directly
 
 ```bash
 npm install
-# or
-yarn install
-```
-
-Then, run the development server:
-
-```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Available Tasks
+
+When using mise, you can run `mise tasks` to see all available tasks. Key tasks include:
+
+- `mise dev` - Start development server
+- `mise build` - Build for production
+- `mise lint` - Run ESLint
+- `mise docker-build` - Build Docker image
+- `mise deploy` - Deploy to DigitalOcean
+- `mise info` - Display project information
+
+See `.mise.toml` for the complete list of available tasks.
 
 ## Chatbot Integration
 
@@ -28,9 +53,43 @@ The platform includes a chatbot widget powered by Jarad's knowledge base. The wi
 
 ## Project Structure
 
-- `/app/pages` - Next.js pages
-- `/app/components` - Reusable React components
-- `/app/styles` - CSS styles and modules
+```
+src/
+├── app/              # Next.js App Router pages
+│   ├── layout.js     # Root layout with chatbot integration
+│   └── page.js       # Homepage
+├── components/       # Reusable React components
+│   └── Navbar.js     # Navigation component
+└── styles/          # CSS modules and global styles
+    ├── globals.css
+    ├── Home.module.css
+    └── Navbar.module.css
+
+scripts/             # Deployment and utility scripts
+├── deploy-simple.sh # Simple Docker deployment
+└── health-check.sh  # Deployment health verification
+
+content/            # Content directories (for future MDX content)
+├── howto/         # How-to guides
+├── tipsnip/       # Tips and snippets
+└── resources/     # Additional resources
+```
+
+## Deployment
+
+The application is configured for deployment to DigitalOcean with Traefik reverse proxy.
+
+### Using mise:
+```bash
+mise deploy
+```
+
+### Manual deployment:
+```bash
+./scripts/deploy-simple.sh
+```
+
+The application will be available at https://ai.triumphbox.dev
 
 ## License
 

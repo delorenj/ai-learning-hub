@@ -1,14 +1,9 @@
+version: '3'
 services:
   ai-hub:
     build: .
-    ports:
-      - "3000:3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+    ports:
+      - "3001:3001"
     restart: unless-stopped
-    networks:
-      - web-proxy
-
-networks:
-  web-proxy:
-    driver: bridge
