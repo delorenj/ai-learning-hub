@@ -1,0 +1,108 @@
+Product Requirements Document: AI Workflow Workshop v2 Refactoring
+
+PROJECT OVERVIEW:
+The AI Workflow Workshop v2 is an existing Next.js application that serves as a web platform for an immersive AI development workshop. The application currently uses JavaScript, CSS Modules, and static content. This PRD outlines the requirements for refactoring the application to use modern technologies and implement dynamic content features.
+
+OBJECTIVES:
+1. Modernize the tech stack by migrating to TypeScript, TailwindCSS, and shadcn components
+2. Implement dynamic content loading from markdown/MDX files
+3. Add proper development tooling with mise task runner
+4. Enhance deployment configuration with Traefik labels
+5. Create a scalable content management system for how-to guides and tip-snips
+
+TARGET AUDIENCE:
+- AI developers and enthusiasts with varying experience levels
+- Workshop participants seeking hands-on AI development knowledge
+- Instructors managing workshop content
+
+FUNCTIONAL REQUIREMENTS:
+
+Phase 1 - Technology Stack Modernization:
+1. TypeScript Migration
+   - Convert all JavaScript files to TypeScript
+   - Add proper type definitions for components and utilities
+   - Configure tsconfig.json for Next.js compatibility
+
+2. TailwindCSS Integration
+   - Install and configure TailwindCSS
+   - Convert existing CSS Modules to Tailwind utility classes
+   - Set up custom theme matching brand colors (#031B4E, #E5E8ED, #0061EB)
+
+3. Shadcn UI Components
+   - Install and configure shadcn-ui
+   - Replace existing components with shadcn equivalents
+   - Create custom component variants as needed
+
+4. Mise Task Runner
+   - Create .mise.toml configuration
+   - Define tasks for common operations (dev, build, deploy, lint)
+   - Document all available tasks
+
+5. Docker Configuration
+   - Add Traefik labels to docker-compose.yml
+   - Ensure compatibility with existing deployment process
+
+Phase 2 - Dynamic Content Features:
+1. Content Card Component
+   - Create reusable card component for displaying content items
+   - Support metadata (title, description, tags, date)
+   - Implement hover effects and responsive design
+
+2. MDX Support
+   - Configure Next.js for MDX file processing
+   - Support code syntax highlighting
+   - Enable embedded components and interactive elements
+
+3. Dynamic Content Pages
+   - Implement /howto page with grid layout
+   - Implement /tipsnips page with grid layout
+   - Create dynamic routing for individual content pages
+   - Build content viewer with proper MDX rendering
+
+4. Content Management
+   - Create content structure in /content directory
+   - Support frontmatter metadata in MDX files
+   - Implement content discovery and listing
+
+NON-FUNCTIONAL REQUIREMENTS:
+- Performance: Page load time under 3 seconds
+- Accessibility: WCAG 2.1 AA compliance
+- SEO: Proper meta tags and structured data
+- Mobile: Fully responsive design
+- Browser Support: Modern browsers (Chrome, Firefox, Safari, Edge)
+
+TECHNICAL SPECIFICATIONS:
+- Next.js 14 with App Router
+- TypeScript 5.x
+- TailwindCSS 3.x (currently showing 4.1.7 in package.json)
+- shadcn-ui latest
+- MDX 3.x
+- Docker with multi-stage build
+- Node.js 18 Alpine base image
+
+DELIVERABLES:
+1. Fully refactored codebase with TypeScript
+2. Styled application using TailwindCSS and shadcn
+3. Working dynamic content system
+4. Updated documentation
+5. Configured mise tasks
+6. Enhanced Docker configuration
+
+SUCCESS CRITERIA:
+- All existing functionality preserved
+- Type-safe codebase with no TypeScript errors
+- Consistent design system using shadcn components
+- Dynamic content loading from MDX files
+- Improved developer experience with mise tasks
+- Successful deployment to DigitalOcean
+
+TIMELINE:
+- Phase 1: 2-3 weeks
+- Phase 2: 2-3 weeks
+- Total: 4-6 weeks
+
+CONSTRAINTS:
+- Must maintain compatibility with existing DigitalOcean deployment
+- Cannot break existing chatbot integration
+- Must preserve all current routes and functionality
+- Should minimize bundle size increase
