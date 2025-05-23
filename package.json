@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "next": "^14.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "shadcn": "^2.5.0",
+    "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "eslint": "^8.0.0",
