@@ -1,0 +1,94 @@
+# Mise configuration for AI Workflow Workshop v2
+
+[tools]
+node = "20"
+
+[env]
+NODE_ENV = "development"
+
+[tasks.dev]
+description = "Start the development server"
+run = "npm run dev"
+
+[tasks.build]
+description = "Build the application for production"
+run = "npm run build"
+
+[tasks.start]
+description = "Start the production server"
+run = "npm run start"
+
+[tasks.lint]
+description = "Run ESLint on the codebase"
+run = "npm run lint"
+
+[tasks.install]
+description = "Install project dependencies"
+run = "npm install"
+
+[tasks.clean]
+description = "Clean build artifacts and node_modules"
+run = ["rm -rf .next", "rm -rf node_modules", "rm -rf out"]
+
+[tasks.reinstall]
+description = "Clean and reinstall all dependencies"
+depends = ["clean"]
+run = "npm install"
+
+[tasks.docker-build]
+description = "Build Docker image locally"
+run = "docker build -t ai-hub ."
+
+[tasks.docker-run]
+description = "Run Docker container locally"
+run = "docker run -p 3000:3000 -e NODE_ENV=production ai-hub"
+
+[tasks.deploy]
+description = "Deploy to DigitalOcean using simple deployment script"
+run = "./scripts/deploy-simple.sh"
+
+[tasks.health-check]
+description = "Check deployment health"
+run = "./scripts/health-check.sh"
+
+[tasks.type-check]
+description = "Run TypeScript type checking (after TypeScript migration)"
+run = "npx tsc --noEmit"
+
+[tasks.test]
+description = "Run tests (placeholder for future test suite)"
+run = "echo 'No tests configured yet'"
+
+[tasks.format]
+description = "Format code using Prettier (if configured)"
+run = "npx prettier --write ."
+
+[tasks.serve]
+description = "Build and start production server"
+depends = ["build"]
+run = "npm run start"
+
+[tasks.docker-compose-up]
+description = "Start services using docker-compose"
+run = "docker-compose up -d"
+
+[tasks.docker-compose-down]
+description = "Stop services using docker-compose"
+run = "docker-compose down"
+
+[tasks.docker-compose-logs]
+description = "View docker-compose logs"
+run = "docker-compose logs -f"
+
+[tasks.info]
+description = "Display project information"
+run = '''
+echo "AI Workflow Workshop v2"
+echo "======================="
+echo "Node version: $(node -v)"
+echo "NPM version: $(npm -v)"
+echo "Environment: $NODE_ENV"
+echo ""
+echo "Available tasks:"
+mise tasks
+'''

@@ -1,66 +1,11 @@
 
 > ai-workflow-workshop@0.1.0 dev
-> next dev
+> next dev --turbopack --hostname 0.0.0.0
 
-  ▲ Next.js 14.2.29
-  - Local:        http://localhost:3000
-
- ✓ Starting...
- ✓ Ready in 1361ms
- ○ Compiling / ...
- ✓ Compiled / in 1013ms (495 modules)
- GET / 200 in 1242ms
- GET / 200 in 58ms
- ✓ Compiled in 141ms (246 modules)
- ✓ Compiled in 161ms (246 modules)
- ✓ Compiled in 232ms (495 modules)
- GET / 200 in 93ms
- GET / 200 in 89ms
- ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
-  ▲ Next.js 14.2.29
-  - Local:        http://localhost:3000
+   ▲ Next.js 15.1.8 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
 
  ✓ Starting...
- ✓ Ready in 1122ms
-Error: ENOENT: no such file or directory, scandir '/home/delorenj/code/ai-workflow-workshop-v2/app'
-    at async Object.readdir (node:internal/fs/promises:950:18)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:39:29
-    at async Promise.all (index 0)
-    at async recursiveReadDir (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:32:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:71:25
-    at async Promise.all (index 0)
-    at async BatchedFileReader.load (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:67:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:41:26 {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/home/delorenj/code/ai-workflow-workshop-v2/app'
-}
- ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir '/home/delorenj/code/ai-workflow-workshop-v2/app'
-    at async Object.readdir (node:internal/fs/promises:950:18)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:39:29
-    at async Promise.all (index 0)
-    at async recursiveReadDir (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:32:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:71:25
-    at async Promise.all (index 0)
-    at async BatchedFileReader.load (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:67:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:41:26 {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/home/delorenj/code/ai-workflow-workshop-v2/app'
-}
- ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir '/home/delorenj/code/ai-workflow-workshop-v2/app'
-    at async Object.readdir (node:internal/fs/promises:950:18)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:39:29
-    at async Promise.all (index 0)
-    at async recursiveReadDir (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/lib/recursive-readdir.js:32:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:71:25
-    at async Promise.all (index 0)
-    at async BatchedFileReader.load (/home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:67:25)
-    at async /home/delorenj/code/ai-workflow-workshop-v2/node_modules/next/dist/server/future/route-matcher-providers/dev/helpers/file-reader/batched-file-reader.js:41:26 {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'scandir',
-  path: '/home/delorenj/code/ai-workflow-workshop-v2/app'
-}
+ ✓ Ready in 805ms
+[?25h

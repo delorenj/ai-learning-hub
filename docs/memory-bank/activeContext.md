@@ -1,88 +1,59 @@
 ```markdown
-# activeContext.md
+## Active Context: AI Workflow Workshop v2 Refactor - Sprint 2
 
-## Current Sprint Goals (Sprint 3: Polishing & RAG Integration)
+This document outlines the active context for Sprint 2 of the AI Workflow Workshop v2 refactor project.
 
-The primary goal of this sprint is to finalize the core functionality of the AI Development Workshop, focusing on polishing the user interface and fully integrating the RAG (Retrieval Augmented Generation) chatbot with Jarad's knowledge base. This includes:
+### Sprint Goals
 
-*   **RAG Chatbot Integration:** Fully functional RAG chatbot capable of answering user questions accurately and efficiently using Jarad's knowledge base. This includes robust error handling and a user-friendly interface for interaction.
-*   **UI/UX Polishing:** Refine the overall user experience of the workshop hub, ensuring intuitive navigation, clear instructions, and a visually appealing design.  Address reported usability issues from user testing.
-*   **Content Finalization:** Review and finalize all workshop content, including tutorials, examples, and documentation, to ensure accuracy, completeness, and clarity.
-*   **Testing and Bug Fixing:** Thoroughly test all aspects of the workshop and address any identified bugs or issues.
-*   **Deployment Preparation:** Prepare the workshop for initial deployment to a limited beta group.
+*   **Primary Goal:** Complete the core refactoring of the AI workflow components from JavaScript to TypeScript, focusing on type safety and maintainability.
+*   **Secondary Goal:** Integrate TailwindCSS and begin implementing the base UI components using shadcn/ui.
+*   **Stretch Goal:** Implement dynamic MDX content loading for the workshop modules.
 
-## Ongoing Tasks
+### Ongoing Tasks
 
-*   **RAG Chatbot Development:**
-    *   Fine-tuning the embedding model for improved relevance.
-    *   Implementing conversational memory for more context-aware responses.
-    *   Adding a feedback mechanism for users to rate chatbot responses.
-*   **UI/UX Improvements:**
-    *   Implementing visual cues to guide users through workflows.
-    *   Optimizing the interface for different screen sizes.
-    *   Improving the search functionality within the workshop hub.
-*   **Content Review:**
-    *   Verifying the accuracy of all code examples.
-    *   Updating documentation to reflect the latest changes.
-    *   Creating a FAQ section for common user questions.
-*   **Testing:**
-    *   Conducting comprehensive unit tests for all modules.
-    *   Performing integration tests to ensure seamless interaction between components.
-    *   Running user acceptance testing (UAT) with a small group of testers.
-*   **Deployment Scripting:**
-    *   Automating deployment to the staging environment.
-    *   Documenting the deployment process.
+*   **TypeScript Refactoring:**
+    *   Migrate the `data-processing` module to TypeScript (Assigned to: Alice) - *In Progress, estimated completion: 5/26/2025*
+    *   Refactor the `model-training` module to TypeScript (Assigned to: Bob) - *In Progress, estimated completion: 5/27/2025*
+    *   Implement TypeScript interfaces and types for shared data structures (Assigned to: Alice & Bob) - *In Progress, estimated completion: 5/28/2025*
+*   **TailwindCSS and shadcn/ui Integration:**
+    *   Configure TailwindCSS and shadcn/ui in the project (Assigned to: Carol) - *Completed, awaiting review*
+    *   Develop the `WorkshopCard` component using shadcn/ui (Assigned to: Carol) - *In Progress, estimated completion: 5/25/2025*
+*   **Dynamic MDX Content Loading:**
+    *   Research and implement a solution for dynamic MDX loading using Next.js (Assigned to: David) - *In Progress, initial research complete, prototype implementation started, estimated completion: 5/29/2025*
+*   **Deployment Configuration:**
+    *   Update the `Dockerfile` and deployment scripts to reflect the new project structure (Assigned to: Eve) - *Not Started, scheduled to begin 5/27/2025*
+*   **Documentation:**
+    *   Update the project README with the new technology stack and development instructions (Assigned to: Frank) - *Not Started, scheduled to begin 5/29/2025*
 
-## Known Issues
+### Known Issues
 
-*   **RAG Chatbot Accuracy:** The chatbot sometimes provides inaccurate or incomplete answers, particularly for complex or nuanced questions. (Priority: High)
-*   **UI Responsiveness:** The workshop hub can be slow to load on certain browsers and devices. (Priority: Medium)
-*   **Inconsistent Formatting:**  Minor inconsistencies in formatting across different sections of the workshop content. (Priority: Low)
-*   **Limited Error Handling:** The application lacks robust error handling, leading to uninformative error messages in some cases. (Priority: Medium)
+*   **Type Compatibility Issues:** Encountering some type compatibility issues during the TypeScript migration, particularly with legacy JavaScript code. Requires careful type annotations and potentially code restructuring.
+*   **shadcn/ui Theming:** Customizing the default theme in shadcn/ui is proving more challenging than anticipated. Requires further investigation into the theming options.
+*   **MDX Performance:** Initial tests with dynamic MDX loading show potential performance bottlenecks with large MDX files. Requires optimization strategies (e.g., caching, code splitting).
 
-## Priorities
+### Priorities
 
-1.  **RAG Chatbot Accuracy:** Resolving the accuracy issues with the RAG chatbot is the highest priority.  This is critical for the workshop's core value proposition.
-2.  **UI Responsiveness:** Improving the UI responsiveness is the second highest priority. A slow and unresponsive interface will negatively impact the user experience.
-3.  **Limited Error Handling:** Implementing better error handling is important for providing a smoother and more informative user experience.
-4.  **Content Finalization:** Ensuring the accuracy and completeness of the workshop content is essential for its educational value.
-5.  **Inconsistent Formatting:** Addressing the minor formatting inconsistencies is the lowest priority and can be addressed after the other issues are resolved.
+1.  **TypeScript Refactoring (High):** Completing the core refactoring is critical for long-term maintainability and scalability.
+2.  **TailwindCSS and shadcn/ui Integration (High):** Establishing the base UI foundation is essential for building a modern and responsive user interface.
+3.  **Dynamic MDX Content Loading (Medium):** Implementing dynamic content loading will enhance the flexibility and maintainability of the workshop modules.
+4.  **Deployment Configuration (Low):** Updating the deployment configuration can be deferred until the core refactoring and UI integration are more mature.
+5.  **Documentation (Low):** Updating the documentation should be done after the major refactoring tasks are completed.
 
-## Next Steps
+### Next Steps
 
-*   **RAG Chatbot:**
-    *   Experiment with different embedding models and vector database configurations.
-    *   Implement a more sophisticated ranking algorithm for retrieved documents.
-    *   Add a mechanism for the chatbot to ask clarifying questions when necessary.
-*   **UI/UX:**
-    *   Profile the application's performance to identify bottlenecks.
-    *   Optimize images and other assets for faster loading times.
-    *   Implement caching mechanisms to reduce server load.
-*   **Content:**
-    *   Schedule a final review of all content with Jarad.
-    *   Update the FAQ section based on user feedback.
-*   **Testing:**
-    *   Address all bugs reported by the UAT testers.
-    *   Conduct performance testing to ensure the application can handle a large number of concurrent users.
-*   **Deployment:**
-    *   Finalize the deployment scripts and documentation.
-    *   Prepare the staging environment for deployment.
+*   **Address Type Compatibility Issues:** Alice and Bob will prioritize resolving the type compatibility issues encountered during the TypeScript migration.
+*   **Investigate shadcn/ui Theming:** Carol will dedicate time to exploring the theming options in shadcn/ui and finding a solution for customizing the default theme.
+*   **Optimize MDX Performance:** David will research and implement optimization strategies to address the potential performance bottlenecks with dynamic MDX loading.
+*   **Code Review:** Carol's TailwindCSS and shadcn/ui configuration needs to be reviewed by Alice or Bob.
 
-## Meeting Notes (5/20/2025 - Sprint Review)
+### Meeting Notes (5/23/2025 - Daily Standup)
 
-*   **Attendees:** Alice, Bob, Carol, David, Jarad
-*   **Key Discussion Points:**
-    *   Review of Sprint 2 accomplishments. Overall positive feedback on the workflow implementations.
-    *   Discussion of RAG chatbot accuracy issues. Jarad suggested exploring alternative knowledge base indexing strategies.
-    *   Presentation of the updated UI/UX design. Positive reception, with some minor suggestions for improvement.
-    *   Review of UAT feedback. Several bugs and usability issues were identified.
-    *   Planning for Sprint 3. Priorities were discussed and agreed upon.
-*   **Action Items:**
-    *   Alice: Investigate alternative knowledge base indexing strategies for the RAG chatbot.
-    *   Bob: Address the UI/UX issues reported by the UAT testers.
-    *   Carol: Update the FAQ section based on UAT feedback.
-    *   David: Finalize the deployment scripts and documentation.
-    *   Jarad: Review the workshop content and provide feedback.
+*   **Alice:** Made good progress on the `data-processing` module refactoring. Encountered some challenges with the `lodash` library, but found a workaround using TypeScript-native array methods.
+*   **Bob:** Successfully refactored most of the `model-training` module. Needs to refactor tests.
+*   **Carol:** Completed the TailwindCSS and shadcn/ui configuration. Working on the `WorkshopCard` component. Struggling with theming.
+*   **David:** Initial research on dynamic MDX loading is promising. Prototype implementation is underway.
+*   **Eve:** Reviewed updated deployment scripts. Ready to start task on 5/27/2025
+*   **Frank:** Awaiting the completion of refactoring to update documentation.
 
-Created on 5/21/2025
+Created on 5/23/2025
 ```
