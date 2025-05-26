@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- Mise file is NOT HIDDEN. Should be `mise.toml`
 
 ### Deployment
 - `./scripts/deploy-simple.sh` - Deploy to DigitalOcean droplet (104.248.3.174)

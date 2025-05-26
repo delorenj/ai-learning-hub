@@ -1,108 +1,104 @@
-Product Requirements Document: AI Workflow Workshop v2 Refactoring
+# AI Learning Hub - Product Requirements Document
 
-PROJECT OVERVIEW:
-The AI Workflow Workshop v2 is an existing Next.js application that serves as a web platform for an immersive AI development workshop. The application currently uses JavaScript, CSS Modules, and static content. This PRD outlines the requirements for refactoring the application to use modern technologies and implement dynamic content features.
+## Project Overview
+Transform the existing AI Learning Hub into a comprehensive, production-ready web platform for AI development workshops with dynamic content management capabilities.
 
-OBJECTIVES:
-1. Modernize the tech stack by migrating to TypeScript, TailwindCSS, and shadcn components
-2. Implement dynamic content loading from markdown/MDX files
-3. Add proper development tooling with mise task runner
-4. Enhance deployment configuration with Traefik labels
-5. Create a scalable content management system for how-to guides and tip-snips
+## Current State Analysis
+- Next.js 14 application with basic structure
+- Docker containerization configured
+- Basic navigation and layout components
+- Static content structure in place
+- Missing: dynamic content features, modern tooling, TypeScript migration
 
-TARGET AUDIENCE:
-- AI developers and enthusiasts with varying experience levels
-- Workshop participants seeking hands-on AI development knowledge
-- Instructors managing workshop content
+## Primary Objectives
 
-FUNCTIONAL REQUIREMENTS:
+### Phase 1: Foundation Modernization
+Modernize the existing codebase to establish a solid foundation for future development:
 
-Phase 1 - Technology Stack Modernization:
-1. TypeScript Migration
-   - Convert all JavaScript files to TypeScript
-   - Add proper type definitions for components and utilities
-   - Configure tsconfig.json for Next.js compatibility
+1. **Infrastructure Enhancement**
+   - Add Traefik labels to docker-compose for reverse proxy support
+   - Integrate mise as package manager and task runner
+   - Complete TypeScript migration for type safety
+   - Ensure full Tailwind CSS integration
+   - Implement shadcn/ui component system
 
-2. TailwindCSS Integration
-   - Install and configure TailwindCSS
-   - Convert existing CSS Modules to Tailwind utility classes
-   - Set up custom theme matching brand colors (#031B4E, #E5E8ED, #0061EB)
+2. **Code Quality & Standards**
+   - Establish consistent code conventions
+   - Implement proper error handling
+   - Add comprehensive linting and formatting
+   - Ensure Docker optimization
 
-3. Shadcn UI Components
-   - Install and configure shadcn-ui
-   - Replace existing components with shadcn equivalents
-   - Create custom component variants as needed
+### Phase 2: Dynamic Content System
+Build dynamic content management capabilities to transform static content into an interactive learning platform:
 
-4. Mise Task Runner
-   - Create .mise.toml configuration
-   - Define tasks for common operations (dev, build, deploy, lint)
-   - Document all available tasks
+1. **Content Architecture**
+   - Create reusable content card components for grid layouts
+   - Implement dynamic content loading from markdown files
+   - Build content view pages for full-page content display
+   - Support MDX rendering for interactive content
 
-5. Docker Configuration
-   - Add Traefik labels to docker-compose.yml
-   - Ensure compatibility with existing deployment process
+2. **Page Implementations**
+   - Dynamic how-to guides page with content grid
+   - Dynamic tip-snips page with content grid
+   - Individual content view pages with markdown rendering
+   - Navigation between content items
 
-Phase 2 - Dynamic Content Features:
-1. Content Card Component
-   - Create reusable card component for displaying content items
-   - Support metadata (title, description, tags, date)
-   - Implement hover effects and responsive design
+3. **Content Management**
+   - File-based content management from `/content` directory
+   - Metadata extraction from markdown frontmatter
+   - Content categorization and tagging
+   - Search and filtering capabilities
 
-2. MDX Support
-   - Configure Next.js for MDX file processing
-   - Support code syntax highlighting
-   - Enable embedded components and interactive elements
+## Technical Requirements
 
-3. Dynamic Content Pages
-   - Implement /howto page with grid layout
-   - Implement /tipsnips page with grid layout
-   - Create dynamic routing for individual content pages
-   - Build content viewer with proper MDX rendering
-
-4. Content Management
-   - Create content structure in /content directory
-   - Support frontmatter metadata in MDX files
-   - Implement content discovery and listing
-
-NON-FUNCTIONAL REQUIREMENTS:
-- Performance: Page load time under 3 seconds
-- Accessibility: WCAG 2.1 AA compliance
-- SEO: Proper meta tags and structured data
-- Mobile: Fully responsive design
-- Browser Support: Modern browsers (Chrome, Firefox, Safari, Edge)
-
-TECHNICAL SPECIFICATIONS:
+### Development Environment
+- Node.js 18+ with TypeScript
 - Next.js 14 with App Router
-- TypeScript 5.x
-- TailwindCSS 3.x (currently showing 4.1.7 in package.json)
-- shadcn-ui latest
-- MDX 3.x
-- Docker with multi-stage build
-- Node.js 18 Alpine base image
+- Tailwind CSS for styling
+- shadcn/ui for component library
+- mise for task running and package management
+- Docker with multi-stage builds
 
-DELIVERABLES:
-1. Fully refactored codebase with TypeScript
-2. Styled application using TailwindCSS and shadcn
-3. Working dynamic content system
-4. Updated documentation
-5. Configured mise tasks
-6. Enhanced Docker configuration
+### Content System
+- MDX support for interactive content
+- Frontmatter metadata parsing
+- Dynamic routing for content pages
+- Responsive grid layouts
+- Content preview cards
 
-SUCCESS CRITERIA:
-- All existing functionality preserved
-- Type-safe codebase with no TypeScript errors
-- Consistent design system using shadcn components
-- Dynamic content loading from MDX files
-- Improved developer experience with mise tasks
-- Successful deployment to DigitalOcean
+### Deployment
+- Docker containerization
+- Traefik reverse proxy support
+- Production optimizations
+- Health check endpoints
 
-TIMELINE:
-- Phase 1: 2-3 weeks
-- Phase 2: 2-3 weeks
-- Total: 4-6 weeks
+## Success Criteria
 
-CONSTRAINTS:
-- Must maintain compatibility with existing DigitalOcean deployment
-- Cannot break existing chatbot integration
-- Must preserve all current routes and functionality
-- Should minimize bundle size increase
+### Phase 1 Completion
+- All TypeScript migration complete with zero type errors
+- mise integration working for all development tasks
+- shadcn/ui components properly integrated
+- Docker build succeeds with all optimizations
+- Traefik labels configured correctly
+
+### Phase 2 Completion
+- Dynamic content loading from markdown files
+- Functional content grid layouts on how-to and tip-snips pages
+- Individual content pages rendering MDX properly
+- Responsive design across all devices
+- Navigation between content working seamlessly
+
+## Future Considerations
+- User authentication and personalization
+- Content creation/editing interface
+- Progress tracking for tutorials
+- Interactive code examples
+- Integration with AI chatbot for enhanced learning
+
+## Acceptance Criteria
+Each task must have measurable acceptance criteria that can be validated through:
+- Unit tests where applicable
+- Integration tests for content loading
+- Visual regression tests for UI components
+- Performance benchmarks for page load times
+- Docker build and deployment verification
