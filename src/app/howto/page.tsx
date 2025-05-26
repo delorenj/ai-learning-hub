@@ -2,119 +2,33 @@
 
 import React from "react";
 import { ContentCard } from "@/components/ui/content-card";
+import { Play, FolderPlus, UserPlus, Star, HelpCircle } from "lucide-react";
 
 const howToCards = [
   {
     title: "Getting Started",
     description: "Learn how to set up your environment and begin using the platform.",
-    icon: (
-      <svg
-        className="w-8 h-8 text-primary"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 4v16m8-8H4"
-        />
-      </svg>
-    ),
+    icon: <Play className="w-8 h-8 text-primary" />,
   },
   {
     title: "Create Your First Project",
     description: "Step-by-step guide to creating and managing your first project.",
-    icon: (
-      <svg
-        className="w-8 h-8 text-primary"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <rect
-          x="4"
-          y="4"
-          width="16"
-          height="16"
-          rx="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 12h6"
-        />
-      </svg>
-    ),
+    icon: <FolderPlus className="w-8 h-8 text-primary" />,
   },
   {
     title: "Invite Team Members",
     description: "How to add collaborators and manage team permissions.",
-    icon: (
-      <svg
-        className="w-8 h-8 text-primary"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <circle cx="8" cy="12" r="3" />
-        <circle cx="16" cy="12" r="3" />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M2 20c0-2.21 3.58-4 8-4s8 1.79 8 4"
-        />
-      </svg>
-    ),
+    icon: <UserPlus className="w-8 h-8 text-primary" />,
   },
   {
     title: "Explore Features",
     description: "Overview of key features and how to leverage them for productivity.",
-    icon: (
-      <svg
-        className="w-8 h-8 text-primary"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <polygon
-          points="12 2 15 8.5 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 9 8.5 12 2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    icon: <Star className="w-8 h-8 text-primary" />,
   },
   {
     title: "FAQ & Troubleshooting",
     description: "Find answers to common questions and resolve issues quickly.",
-    icon: (
-      <svg
-        className="w-8 h-8 text-primary"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 16v.01M12 8a4 4 0 0 1 4 4c0 1.5-1 2.5-2 3"
-        />
-      </svg>
-    ),
+    icon: <HelpCircle className="w-8 h-8 text-primary" />,
   },
 ];
 
