@@ -15,7 +15,7 @@ export default function Home() {
           Your source of guides, and a place to share ideas.
         </p>
 
-	<!-- TODO: pull content from HowToGrid.md -->
+        {/* TODO: pull content from HowToGrid.md */}
         <div className={styles.grid}>
           <div className={styles.card}>
             <h2>AI Command Line Tools</h2>
