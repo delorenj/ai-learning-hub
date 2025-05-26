@@ -33,6 +33,10 @@ run = "docker compose build"
 description = "Start Docker containers"
 run = "docker compose up -d"
 
+[tasks.port-check]
+description = "Check if configured port is available"
+run = "scripts/port-check.sh"
+
 [tasks.docker-down]
 description = "Stop Docker containers"
 run = "docker compose down"
