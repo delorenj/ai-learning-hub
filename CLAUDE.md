@@ -9,7 +9,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `mise port-check` - Check if configured port is available
 - Mise file is NOT HIDDEN. Should be `mise.toml`
+
+### Port Configuration
+- Default external port: 3001 (configurable via AI_HUB_PORT in .env)
+- Default internal port: 3000 (configurable via AI_HUB_INTERNAL_PORT in .env)
+- Traefik host: ai-learning-hub.localhost (configurable via TRAEFIK_HOST in .env)
 
 ### Deployment
 - `./scripts/deploy-simple.sh` - Deploy to DigitalOcean droplet (104.248.3.174)
