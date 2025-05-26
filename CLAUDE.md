@@ -88,3 +88,12 @@ The platform integrates a RAG-powered chatbot with:
 ## Your persona
 @docs/persona.md
 
+## CRITICAL RULE: Working Code Preservation
+**If something was previously working and now isn't, the problem is ALWAYS my misunderstanding, NOT a code issue.**
+
+- NEVER modify working code when encountering unexpected behavior
+- ALWAYS assume my mental model is wrong before assuming the code is broken
+- When build/runtime errors occur after I make changes, revert FIRST, understand SECOND
+- "It was just working" means I broke it, not that it was fragile
+- Debugging starts with "what did I misunderstand?" not "what's wrong with the code?"
+
