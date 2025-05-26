@@ -1,8 +1,6 @@
 import Navbar from "@/components/Navbar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Terminal, Brain, Database, Lightbulb } from "lucide-react";
+import DynamicCard from "@/components/DynamicCard";
+import { sampleContent } from "@/data/content-items";
 
 export default function Home() {
   return (
@@ -19,85 +17,11 @@ export default function Home() {
           </p>
         </div>
 
-        {/* TODO: pull content from HowToGrid.md */}
+        {/* Dynamic content cards - now data-driven */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
-            <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-              <Terminal className="h-6 w-6 text-blue-600 mr-3" />
-              <div className="flex-1">
-                <CardTitle className="flex items-center justify-between">
-                  AI Command Line Tools
-                  <Badge variant="secondary">New</Badge>
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="mb-4">
-                Learn how to set up and use AI from the command line.
-              </CardDescription>
-              <Button variant="ghost" className="w-full justify-between group-hover:bg-blue-50">
-                Get Started
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
-            <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-              <Brain className="h-6 w-6 text-purple-600 mr-3" />
-              <div className="flex-1">
-                <CardTitle className="flex items-center justify-between">
-                  Project-Based Memory
-                  <Badge variant="secondary">Popular</Badge>
-                </CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="mb-4">
-                Add memory capabilities to your Cursor threads.
-              </CardDescription>
-              <Button variant="ghost" className="w-full justify-between group-hover:bg-purple-50">
-                Learn More
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
-            <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-              <Database className="h-6 w-6 text-green-600 mr-3" />
-              <div className="flex-1">
-                <CardTitle>RAG Applications</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="mb-4">
-                Create and fine-tune Retrieval-Augmented Generation applications.
-              </CardDescription>
-              <Button variant="ghost" className="w-full justify-between group-hover:bg-green-50">
-                Explore
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
-            <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-              <Lightbulb className="h-6 w-6 text-yellow-600 mr-3" />
-              <div className="flex-1">
-                <CardTitle>Prompt Engineering</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="mb-4">
-                Implement best practices for prompt engineering.
-              </CardDescription>
-              <Button variant="ghost" className="w-full justify-between group-hover:bg-yellow-50">
-                Start Learning
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </CardContent>
-          </Card>
+          {sampleContent.map((item, index) => (
+            <DynamicCard key={index} item={item} />
+          ))}
         </div>
       </main>
 
