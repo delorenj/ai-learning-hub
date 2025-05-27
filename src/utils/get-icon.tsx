@@ -1,11 +1,12 @@
-import { Terminal, Brain, Database, Lightbulb, FileText } from "lucide-react";
+import { Terminal, Brain, Database, Lightbulb, FileText, GraduationCap } from "lucide-react";
 
 const iconMap = {
   Terminal,
   Brain, 
   Database,
   Lightbulb,
-  FileText
+  FileText,
+  GraduationCap
 };
 
 export function getIcon(iconName: string) {

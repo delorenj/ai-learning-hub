@@ -21,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
         <Script id="theme-script" strategy="beforeInteractive">
           {`
             (function() {
@@ -38,13 +43,6 @@ export default function RootLayout({
             })();
           `}
         </Script>
-      </head>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
         {children}
       </body>
     </html>

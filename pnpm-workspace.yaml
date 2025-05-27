@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@anthropic-ai/claude-code'
+  - esbuild
+  - sharp
+  - unrs-resolver
