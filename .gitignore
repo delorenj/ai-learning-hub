@@ -49,3 +49,5 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+# SpecStory explanation file
+.specstory/.what-is-this.md
