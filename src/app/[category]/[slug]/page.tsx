@@ -7,6 +7,7 @@ import { ArrowLeft, Clock, User } from 'lucide-react';
 import { getIcon } from '@/utils/get-icon';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 interface ContentPageProps {
   params: {
@@ -29,7 +30,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export async function generateMetadata({ params }: ContentPageProps) {
+export async function generateMetadata({ params }: ContentPageProps): Promise<Metadata> {
   const content = await getSerializedContentItem(params.category, params.slug);
   
   if (!content) {

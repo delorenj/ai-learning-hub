@@ -1,3 +1,5 @@
+'use client';
+
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
