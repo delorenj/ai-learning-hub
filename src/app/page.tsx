@@ -8,28 +8,28 @@ import Link from "next/link";
 export default function Home() {
   // Get featured content from filesystem
   const featuredContent = [
-    ...getContentItems('howto').filter(item => item.metadata.featured),
+    ...getContentItems('howto'),
     ...getContentItems('tipsnips').filter(item => item.metadata.featured),
     ...getContentItems('resources').filter(item => item.metadata.featured)
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
       <main className="container mx-auto px-4 py-16">
         {/* Hero Section */}
         <div className="flex flex-col items-center justify-center mb-16 relative">
-          <div className="absolute w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] -z-10" />
+          <div className="absolute w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] -z-10 dark:opacity-100 opacity-30" />
           
           <div className="flex items-center gap-3 mb-6">
-            <Brain className="h-10 w-10 text-blue-400" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <Brain className="h-10 w-10 text-blue-500 dark:text-blue-400" />
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 bg-clip-text text-transparent">
               AI Learning Hub
             </h1>
           </div>
           
-          <p className="text-xl text-gray-300 max-w-2xl text-center mb-8">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-2xl text-center mb-8">
             Your comprehensive resource for AI knowledge, guides, and best practices. 
             Learn, share, and master artificial intelligence together.
           </p>
@@ -42,7 +42,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/resources">
-              <Button variant="outline" className="border-blue-500 text-blue-400 hover:bg-blue-950/30 px-6 py-6">
+              <Button variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950/30 px-6 py-6">
                 Browse Resources
               </Button>
             </Link>
@@ -52,8 +52,8 @@ export default function Home() {
         {/* Featured Content Section */}
         <div className="mb-16">
           <div className="flex items-center gap-2 mb-8">
-            <Sparkles className="h-6 w-6 text-blue-400" />
-            <h2 className="text-2xl font-semibold text-white">Featured Content</h2>
+            <Sparkles className="h-6 w-6 text-blue-500 dark:text-blue-400" />
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">Featured Content</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -64,7 +64,7 @@ export default function Home() {
           
           {/* Show message if no featured content */}
           {featuredContent.length === 0 && (
-            <div className="text-center text-gray-400 mt-8 p-8 border border-gray-800 rounded-lg bg-gray-900/50">
+            <div className="text-center text-gray-500 dark:text-gray-400 mt-8 p-8 border border-gray-200 dark:border-gray-800 rounded-lg bg-gray-50 dark:bg-gray-900/50">
               <p>No featured content available yet. Add some .mdx files to the content directory!</p>
             </div>
           )}
@@ -76,25 +76,25 @@ export default function Home() {
             title="How-To Guides" 
             description="Step-by-step tutorials to master AI concepts and techniques"
             href="/howto"
-            icon={<BookIcon className="h-8 w-8 text-blue-400" />}
+            icon={<BookIcon className="h-8 w-8 text-blue-500 dark:text-blue-400" />}
           />
           <CategoryCard 
             title="Tip Snips" 
             description="Quick tips and code snippets for common AI tasks"
             href="/tipsnips"
-            icon={<ZapIcon className="h-8 w-8 text-purple-400" />}
+            icon={<ZapIcon className="h-8 w-8 text-purple-500 dark:text-purple-400" />}
           />
           <CategoryCard 
             title="Resources" 
             description="Curated collection of tools, libraries and datasets"
             href="/resources"
-            icon={<DatabaseIcon className="h-8 w-8 text-green-400" />}
+            icon={<DatabaseIcon className="h-8 w-8 text-green-500 dark:text-green-400" />}
           />
         </div>
       </main>
 
-      <footer className="border-t border-gray-800 mt-16 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-400">
+      <footer className="border-t border-gray-200 dark:border-gray-800 mt-16 py-8">
+        <div className="container mx-auto px-4 text-center text-gray-500 dark:text-gray-400">
           <p>AI Learning Hub © 2025</p>
         </div>
       </footer>
@@ -176,13 +176,13 @@ function CategoryCard({
 }) {
   return (
     <Link href={href}>
-      <div className="border border-gray-800 rounded-lg p-6 bg-gray-900/50 hover:bg-gray-800/50 transition-all hover:border-blue-500/50 group">
+      <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 bg-white/50 dark:bg-gray-900/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all hover:border-blue-500/50 group">
         <div className="mb-4">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">{title}</h3>
-        <p className="text-gray-400 mb-4">{description}</p>
-        <div className="flex items-center text-blue-400 font-medium">
+        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">{description}</p>
+        <div className="flex items-center text-blue-600 dark:text-blue-400 font-medium">
           <span>Explore</span>
           <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </div>
