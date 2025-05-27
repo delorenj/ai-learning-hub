@@ -3,6 +3,7 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import dynamic from 'next/dynamic';
 
 // Custom MDX components for rich content
 const mdxComponents = {
@@ -122,10 +123,15 @@ interface MDXContentProps {
   className?: string;
 }
 
-export default function MDXContent({ source, className }: MDXContentProps) {
+function MDXContentInner({ source, className }: MDXContentProps) {
   return (
     <div className={`prose prose-gray max-w-none dark:prose-invert ${className || ''}`}>
       <MDXRemote {...source} components={mdxComponents} />
     </div>
   );
 }
+
+// Export as dynamic component to prevent SSR issues
+export default dynamic(() => Promise.resolve(MDXContentInner), {
+  ssr: false
+});
