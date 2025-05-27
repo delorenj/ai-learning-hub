@@ -1,8 +1,15 @@
 import Navbar from "@/components/Navbar";
 import DynamicCard from "@/components/DynamicCard";
-import { sampleContent } from "@/data/content-items";
+import { getContentItems } from "@/lib/content";
 
 export default function Home() {
+  // Get featured content from filesystem
+  const featuredContent = [
+    ...getContentItems('howto').filter(item => item.metadata.featured),
+    ...getContentItems('tipsnips').filter(item => item.metadata.featured),
+    ...getContentItems('resources').filter(item => item.metadata.featured)
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -17,12 +24,19 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Dynamic content cards - now data-driven */}
+        {/* Featured content from filesystem */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {sampleContent.map((item, index) => (
-            <DynamicCard key={index} item={item} />
+          {featuredContent.map((item) => (
+            <DynamicCard key={`${item.category}-${item.slug}`} item={item} />
           ))}
         </div>
+        
+        {/* Show message if no featured content */}
+        {featuredContent.length === 0 && (
+          <div className="text-center text-gray-500 mt-8">
+            <p>No featured content available yet. Add some .mdx files to the content directory!</p>
+          </div>
+        )}
       </main>
 
       <footer className="mt-16 py-8 border-t border-gray-200">

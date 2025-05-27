@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { getIcon } from "@/utils/get-icon";
 import { ContentItem } from "@/lib/content";
+import Link from "next/link";
 
 interface DynamicCardProps {
   item: ContentItem;
@@ -60,10 +61,12 @@ export default function DynamicCard({ item }: DynamicCardProps) {
             )}
           </div>
         )}
-        <Button variant="ghost" className={`w-full justify-between ${hoverClass}`}>
-          View {item.category}
-          <ArrowRight className="h-4 w-4" />
-        </Button>
+        <Link href={`/${item.category}/${item.slug}`}>
+          <Button variant="ghost" className={`w-full justify-between ${hoverClass}`}>
+            View {item.category}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Home, BookOpen, Lightbulb, Users } from "lucide-react";
+import { Home, BookOpen, Zap, Database } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -28,23 +28,23 @@ const Navbar = () => {
                 <Link href="/howto" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     <BookOpen className="h-4 w-4 mr-2" />
-                    Workflows
+                    How-To
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/tipsnips" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Lightbulb className="h-4 w-4 mr-2" />
-                    Resources
+                    <Zap className="h-4 w-4 mr-2" />
+                    Tip Snips
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/resources" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <Users className="h-4 w-4 mr-2" />
-                    Community
+                    <Database className="h-4 w-4 mr-2" />
+                    Resources
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
