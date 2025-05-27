@@ -1,4 +1,4 @@
-The AI Workflow Workshop v2 is an existing Next.js 14 application that serves as a web platform for AI development education. Currently built with JavaScript and CSS Modules, the project needs modernization to TypeScript, TailwindCSS, and shadcn components. 
+The AI Workflow Workshop v2 is an existing Next.js 15 application that serves as a web platform for AI development education. Currently built with JavaScript and CSS Modules, the project needs modernization to TypeScript, TailwindCSS, and shadcn components. 
 
 Key existing features:
 - Homepage with grid of AI development topics
@@ -7,8 +7,8 @@ Key existing features:
 - Docker deployment to DigitalOcean droplet
 
 Current tech stack:
-- Next.js 14 with App Router
-- React 18.2
+- Next.js 15 App Router
+- React 19
 - JavaScript (to be converted to TypeScript)
 - CSS Modules (to be replaced with TailwindCSS)
 - Docker containerization

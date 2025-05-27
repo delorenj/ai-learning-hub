@@ -12,30 +12,59 @@ interface DynamicCardProps {
 
 export default function DynamicCard({ item }: DynamicCardProps) {
   const Icon = getIcon(item.metadata.icon || "FileText");
-  const hoverColorMap: Record<string, string> = {
-    "text-blue-600": "group-hover:bg-blue-50",
-    "text-purple-600": "group-hover:bg-purple-50", 
-    "text-green-600": "group-hover:bg-green-50",
-    "text-yellow-600": "group-hover:bg-yellow-50"
+  
+  // Color mapping for icons and hover effects
+  const colorMap: Record<string, { icon: string, border: string, bg: string }> = {
+    "text-blue-500": { 
+      icon: "text-blue-500", 
+      border: "group-hover:border-blue-500/50", 
+      bg: "group-hover:bg-blue-900/20" 
+    },
+    "text-purple-500": { 
+      icon: "text-purple-500", 
+      border: "group-hover:border-purple-500/50", 
+      bg: "group-hover:bg-purple-900/20" 
+    },
+    "text-green-500": { 
+      icon: "text-green-500", 
+      border: "group-hover:border-green-500/50", 
+      bg: "group-hover:bg-green-900/20" 
+    },
+    "text-yellow-500": { 
+      icon: "text-yellow-500", 
+      border: "group-hover:border-yellow-500/50", 
+      bg: "group-hover:bg-yellow-900/20" 
+    },
+    "text-red-500": { 
+      icon: "text-red-500", 
+      border: "group-hover:border-red-500/50", 
+      bg: "group-hover:bg-red-900/20" 
+    },
   };
 
-  const hoverClass = hoverColorMap[item.metadata.iconColor || ""] || "group-hover:bg-gray-50";
+  const colorStyle = colorMap[item.metadata.iconColor || ""] || {
+    icon: "text-blue-500",
+    border: "group-hover:border-blue-500/50",
+    bg: "group-hover:bg-blue-900/20"
+  };
 
   return (
-    <Card className="hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group">
+    <Card className={`bg-gray-900 border border-gray-800 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group ${colorStyle.border}`}>
       <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-        <Icon className={`h-6 w-6 ${item.metadata.iconColor || "text-gray-600"} mr-3`} />
-        <div className="flex-1">
-          <CardTitle className="flex items-center justify-between">
+        <div className={`p-2 rounded-md bg-gray-800 ${colorStyle.icon}`}>
+          <Icon className="h-5 w-5" />
+        </div>
+        <div className="flex-1 ml-3">
+          <CardTitle className="flex items-center justify-between text-white">
             {item.metadata.title}
             <div className="flex gap-2">
               {item.metadata.difficulty && (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
                   {item.metadata.difficulty}
                 </Badge>
               )}
               {item.metadata.badgeText && (
-                <Badge variant={item.metadata.badgeVariant || "secondary"}>
+                <Badge variant={item.metadata.badgeVariant || "secondary"} className="text-xs">
                   {item.metadata.badgeText}
                 </Badge>
               )}
@@ -44,25 +73,28 @@ export default function DynamicCard({ item }: DynamicCardProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="mb-4">
+        <CardDescription className="mb-4 text-gray-400">
           {item.metadata.description}
         </CardDescription>
         {(item.metadata.tags || item.metadata.estimatedTime) && (
           <div className="flex flex-wrap gap-2 mb-4">
             {item.metadata.tags?.map((tag, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
+              <Badge key={index} variant="outline" className="text-xs border-gray-700 text-gray-400">
                 {tag}
               </Badge>
             ))}
             {item.metadata.estimatedTime && (
-              <Badge variant="outline" className="text-xs text-gray-500">
+              <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
                 {item.metadata.estimatedTime}
               </Badge>
             )}
           </div>
         )}
         <Link href={`/${item.category}/${item.slug}`}>
-          <Button variant="ghost" className={`w-full justify-between ${hoverClass}`}>
+          <Button 
+            variant="ghost" 
+            className={`w-full justify-between text-gray-300 hover:text-white ${colorStyle.bg}`}
+          >
             View {item.category}
             <ArrowRight className="h-4 w-4" />
           </Button>

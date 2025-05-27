@@ -1,0 +1,127 @@
+---
+title: "How to Install and Configure Memory Bank MCP"
+description: "A beginner's guide to setting up @delorenj/memory-bank-mcp in Cursor and Codex"
+date: "2025-05-27"
+tags: ["AI", "MCP", "Memory Bank", "Cursor", "Codex", "Tutorial"]
+difficulty: "beginner"
+estimatedTime: "25 min"
+---
+
+# How to Install and Configure Memory Bank MCP
+
+Are you new to AI development and looking to enhance your coding experience? In this guide, we'll walk through installing and configuring the Memory Bank MCP server in both Cursor and Codex editors. This powerful tool helps your AI assistant remember important information across sessions, making your development workflow more efficient.
+
+## What is Memory Bank MCP?
+
+Memory Bank MCP is a Model Context Protocol (MCP) server that provides long-term memory capabilities to AI assistants. It allows your AI to store and retrieve information across different coding sessions, making it more effective at helping you with complex projects.
+
+## Prerequisites
+
+Before we begin, make sure you have:
+
+- Node.js (v16 or higher) installed
+- npm (comes with Node.js)
+- Cursor or Codex editor installed
+  - For Codex installation, please refer to our [How to Install Codex](./how-to-install-codex.mdx) guide
+
+## Installing Memory Bank MCP
+
+Let's start by installing the Memory Bank MCP package globally on your system:
+
+```bash
+npm install -g @delorenj/memory-bank-mcp
+```
+
+This command installs the package globally, making it available as a command-line tool across your system.
+
+## Setting Up in Cursor
+
+[Cursor](https://cursor.sh/) is an AI-powered code editor that works well with MCP servers. Here's how to configure Memory Bank MCP in Cursor:
+
+1. Open Cursor
+2. Go to Settings (gear icon in the bottom left)
+3. Select "AI" from the left sidebar
+4. Scroll down to find "MCP Servers"
+5. Click "Add MCP Server"
+6. Enter the following details:
+   - Name: Memory Bank
+   - Command: `memory-bank-mcp`
+   - Arguments: `--port 23450` (or any available port)
+7. Click "Save"
+
+Cursor will now start the Memory Bank MCP server automatically when you launch the editor.
+
+## Setting Up in Codex
+
+[Codex](https://github.com/microsoft/codex) is another powerful AI-enhanced code editor. To configure Memory Bank MCP in Codex:
+
+1. Launch Codex (if you haven't installed it yet, check our [How to Install Codex](./how-to-install-codex.mdx) guide)
+2. Open Settings by pressing `Ctrl+,` (Windows/Linux) or `Cmd+,` (Mac)
+3. Search for "MCP" in the settings search bar
+4. Find "MCP: Servers" and click "Edit in settings.json"
+5. Add the following configuration to your settings.json:
+
+```json
+"mcp.servers": [
+  {
+    "name": "Memory Bank",
+    "command": "memory-bank-mcp",
+    "args": ["--port", "23450"]
+  }
+]
+```
+
+6. Save the file and restart Codex
+
+## Verifying Your Installation
+
+To verify that Memory Bank MCP is working correctly:
+
+1. Open a new file in your editor (Cursor or Codex)
+2. Type a comment asking the AI to remember something, for example:
+   ```javascript
+   // Please remember that my project name is "AI Learning Hub"
+   ```
+3. In a later session, ask the AI about what you asked it to remember:
+   ```javascript
+   // What is my project name?
+   ```
+
+If the AI correctly recalls the information, your Memory Bank MCP is working properly!
+
+## Common Configuration Options
+
+Memory Bank MCP offers several configuration options:
+
+- `--port <number>`: Specify the port number (default: 23450)
+- `--storage <path>`: Specify the storage directory (default: ~/.memory-bank-mcp)
+- `--max-memories <number>`: Maximum number of memories to store (default: 1000)
+
+Example with custom settings:
+
+```bash
+memory-bank-mcp --port 23451 --storage ~/my-memories --max-memories 2000
+```
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. **MCP server not starting**: Make sure Node.js is properly installed and in your PATH
+2. **Connection errors**: Check if the specified port is available or try a different port
+3. **Memory not persisting**: Verify the storage directory exists and is writable
+
+## Next Steps
+
+Now that you have Memory Bank MCP set up, you can:
+
+- Create project-specific memory contexts
+- Store code snippets for reuse
+- Save project requirements for reference
+- Maintain context across multiple coding sessions
+
+## Conclusion
+
+Congratulations! You've successfully installed and configured Memory Bank MCP in your AI-powered code editor. This tool will significantly enhance your coding experience by providing your AI assistant with long-term memory capabilities.
+
+Happy coding!
