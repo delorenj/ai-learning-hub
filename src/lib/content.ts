@@ -1,6 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 export interface ContentMetadata {
   title: string;
@@ -23,6 +28,10 @@ export interface ContentItem {
   metadata: ContentMetadata;
   content: string;
   filepath: string;
+}
+
+export interface SerializedContentItem extends Omit<ContentItem, 'content'> {
+  mdxSource: MDXRemoteSerializeResult;
 }
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
@@ -102,4 +111,45 @@ export function getContentSummary() {
     count: getContentFiles(category).length,
     items: getContentItems(category)
   }));
+}
+
+/**
+ * Serialize MDX content for rendering
+ */
+export async function getSerializedContentItem(category: string, slug: string): Promise<SerializedContentItem | null> {
+  const contentItem = getContentItem(category, slug);
+  
+  if (!contentItem) {
+    return null;
+  }
+  
+  const mdxSource = await serialize(contentItem.content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'wrap' }]
+      ],
+    },
+  });
+  
+  return {
+    slug: contentItem.slug,
+    category: contentItem.category,
+    metadata: contentItem.metadata,
+    filepath: contentItem.filepath,
+    mdxSource
+  };
+}
+
+/**
+ * Get all serialized content items from a category (useful for static generation)
+ */
+export async function getAllSerializedContentItems(category: string): Promise<SerializedContentItem[]> {
+  const slugs = getContentFiles(category);
+  const serializedItems = await Promise.all(
+    slugs.map(slug => getSerializedContentItem(category, slug))
+  );
+  
+  return serializedItems.filter((item): item is SerializedContentItem => item !== null);
 }
