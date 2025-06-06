@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@anthropic-ai/claude-code':
-        specifier: ^1.0.2
+        specifier: ^1.0.3
         version: 1.0.3
       '@mdx-js/loader':
         specifier: ^3.1.0
@@ -72,6 +72,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.3.1
+      '@stagewise/toolbar-next':
+        specifier: ^0.4.3
+        version: 0.4.3(@types/react@19.1.6)(next@15.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@types/node':
         specifier: ^20
         version: 20.17.50
@@ -804,6 +807,22 @@ packages:
 
   '@rushstack/eslint-patch@1.11.0':
     resolution: {integrity: sha512-zxnHvoMQVqewTJr/W4pKjF0bMGiKJv1WX7bSrkl46Hg0QjESbzBROWK0Wg4RphzSOS5Jiy7eFimmM3UgMrMZbQ==}
+
+  '@stagewise/toolbar-next@0.4.3':
+    resolution: {integrity: sha512-9REaoM2AKV/nKiU2LNIPhgfe0cmouU7NbT9Czey4SAfPW0hRZBQ5pii1XcWUJLCQ25aBzIBcOFZipZSYBSFJ/A==}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      next: '>=14.0.0'
+      react: '>=18.0.0'
+
+  '@stagewise/toolbar-react@0.4.3':
+    resolution: {integrity: sha512-VmubMXGYepGEq1nS5ihi9/RHTAxR9XXGmJpGJEnkCrJ5KQ9XVeog3LrhoOPa3EM3hrVNG3fMFz+bxZ9YOgzH2w==}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      react: '>=18.0.0'
+
+  '@stagewise/toolbar@0.4.3':
+    resolution: {integrity: sha512-e0fTH4rANukY0dHa60C1Yle4oVDkcNoyenQTtiyEXVmwOXMUs7BeAJSPk8Q4IL0X0mOws43U7DGGTxt12CD53A==}
 
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
@@ -3420,6 +3439,21 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.11.0': {}
+
+  '@stagewise/toolbar-next@0.4.3(@types/react@19.1.6)(next@15.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@stagewise/toolbar-react': 0.4.3(@types/react@19.1.6)(react@19.1.0)
+      '@types/react': 19.1.6
+      next: 15.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+
+  '@stagewise/toolbar-react@0.4.3(@types/react@19.1.6)(react@19.1.0)':
+    dependencies:
+      '@stagewise/toolbar': 0.4.3
+      '@types/react': 19.1.6
+      react: 19.1.0
+
+  '@stagewise/toolbar@0.4.3': {}
 
   '@swc/counter@0.1.3': {}
 
