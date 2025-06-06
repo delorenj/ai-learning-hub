@@ -32,10 +32,10 @@ echo "💾 Saving Docker image..."
 docker save $APP_NAME | gzip >${APP_NAME}.tar.gz
 
 echo "📤 Uploading image to droplet..."
-scp -o StrictHostKeyChecking=no ${APP_NAME}.tar.gz root@$DROPLET_IP:/tmp/
+scp -i ~/.ssh/my-ssh-key -o StrictHostKeyChecking=no ${APP_NAME}.tar.gz root@$DROPLET_IP:/tmp/
 
 echo "🚀 Deploying on droplet..."
-ssh -o StrictHostKeyChecking=no root@$DROPLET_IP <<EOF
+ssh -i ~/.ssh/my-ssh-key -o StrictHostKeyChecking=no root@$DROPLET_IP <<EOF
     echo "🛑 Stopping existing container if running..."
     docker stop $CONTAINER_NAME 2>/dev/null || true
     docker rm $CONTAINER_NAME 2>/dev/null || true
