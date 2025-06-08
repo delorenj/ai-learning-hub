@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "generatedAt": "2025-06-07T03:12:54.761Z",
+    "tasksAnalyzed": 10,
+    "totalTasks": 10,
+    "analysisCount": 10,
+    "thresholdScore": 5,
+    "projectName": "Taskmaster",
+    "usedResearch": false
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 1,
+      "taskTitle": "Initialize Next.js Project & Basic Layout",
+      "complexityScore": 2,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Break down the task of initializing the Next.js project and creating the basic layout into subtasks for project initialization with TypeScript, configuring ESLint and Prettier, creating the Header component with navigation links, and creating a placeholder Footer component.",
+      "reasoning": "This is a standard, well-documented setup process. The complexity is low as it involves running CLI commands and creating basic, non-interactive components."
+    },
+    {
+      "taskId": 2,
+      "taskTitle": "Define Content Schema & MDX Ingestion Logic",
+      "complexityScore": 4,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Expand the task of creating the MDX ingestion logic into subtasks for defining the frontmatter TypeScript interface, implementing the file system reading utility to find all .mdx files, and integrating a parsing library like gray-matter to extract frontmatter and content.",
+      "reasoning": "This task involves file system I/O and data parsing, which is more complex than simple UI work. It requires knowledge of Node.js APIs and a third-party parsing library."
+    },
+    {
+      "taskId": 3,
+      "taskTitle": "Build Reusable Content Card Component",
+      "complexityScore": 3,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Decompose the creation of the reusable Content Card component into subtasks for building the basic component structure with props, applying styling (e.g., using Tailwind CSS) to match the mockups, and defining the component's prop types using TypeScript.",
+      "reasoning": "This is a fundamental React task. Complexity is low-to-medium depending on the styling intricacy, but it's a self-contained component with clear inputs and outputs."
+    },
+    {
+      "taskId": 4,
+      "taskTitle": "Create 'How-To Guides' Listing Page",
+      "complexityScore": 5,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Break down the creation of the 'How-To Guides' listing page into subtasks for setting up the page route at '/how-to-guides', implementing the data fetching logic within the page using getStaticProps, and rendering a responsive grid of Content Card components with the fetched data.",
+      "reasoning": "This task integrates multiple pieces of the application: routing, data fetching, and UI components. The complexity comes from correctly wiring these parts together within the Next.js page lifecycle."
+    },
+    {
+      "taskId": 5,
+      "taskTitle": "Create Individual Guide Page Template",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Expand the task of creating the individual guide page template into subtasks for implementing dynamic routing using `getStaticPaths`, fetching data for a single guide in `getStaticProps`, configuring and using a library like 'next-mdx-remote' to render the MDX content, and styling the article page layout.",
+      "reasoning": "Dynamic routing and server-side rendering of MDX content are core but non-trivial Next.js concepts. It requires understanding `getStaticPaths` and `getStaticProps` and configuring an MDX processing pipeline."
+    },
+    {
+      "taskId": 6,
+      "taskTitle": "Build the Homepage Layout",
+      "complexityScore": 3,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Decompose the task of building the homepage into subtasks for creating the hero section component with title and CTAs, building the layout for the featured content section, and ensuring the overall page layout is responsive across common device sizes.",
+      "reasoning": "This is a standard UI development task, creating a static page. The complexity is mainly in the CSS and layout implementation, which is relatively straightforward."
+    },
+    {
+      "taskId": 7,
+      "taskTitle": "Implement 'Featured Content' Logic",
+      "complexityScore": 5,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Break down the implementation of the 'Featured Content' logic into subtasks for updating the frontmatter schema with a 'featured: boolean' flag, modifying the data ingestion function to allow filtering for featured content, and fetching and displaying this content on the homepage.",
+      "reasoning": "This task requires modifying multiple existing parts of the application (data schema, fetching logic, and a UI page). The coordination and potential for regression increase the complexity beyond a simple new feature."
+    },
+    {
+      "taskId": 8,
+      "taskTitle": "Implement 'Tip Snips' Content Type & Pages",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Expand the task of adding the 'Tip Snips' content type. Create subtasks for refactoring the core content ingestion logic to be generic and accept a content type parameter, creating the '/tip-snips' listing page, creating the dynamic '/tip-snips/[slug]' detail page, and adding the new section to the main navigation.",
+      "reasoning": "While it seems like a copy-paste job, the right way to do this involves refactoring the existing logic to be reusable. This refactoring adds complexity but is crucial for maintainability."
+    },
+    {
+      "taskId": 9,
+      "taskTitle": "Implement 'Resources' Content Type & Page",
+      "complexityScore": 4,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Break down the implementation of the 'Resources' content type into subtasks for updating the content schema to include an 'externalUrl' field, modifying the Content Card component to conditionally render as an external link, and creating the '/resources' listing page.",
+      "reasoning": "This task leverages the refactoring done in the previous step. The main new complexity is a small modification to a UI component to handle a new prop and render an `<a>` tag differently."
+    },
+    {
+      "taskId": 10,
+      "taskTitle": "Implement Theme Switcher",
+      "complexityScore": 7,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Expand the task of implementing a theme switcher into subtasks for defining light and dark theme styles using CSS variables, creating a React Context and Provider for managing and distributing theme state, building the UI toggle component for the header, and implementing persistence using localStorage.",
+      "reasoning": "Implementing a theme switcher correctly is complex. It touches the entire styling layer, requires global state management, interacts with browser storage, and must be integrated into the main layout."
+    }
+  ]
+}
