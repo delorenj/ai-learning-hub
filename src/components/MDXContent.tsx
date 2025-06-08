@@ -116,6 +116,86 @@ const mdxComponents = {
       </CardContent>
     </Card>
   ),
+
+  // Video component for embedding videos
+  Video: ({ src, title, width = "100%", height = "400", ...props }: { 
+    src: string; 
+    title?: string; 
+    width?: string; 
+    height?: string;
+    [key: string]: any;
+  }) => {
+    // Check if it's a YouTube URL
+    const isYouTube = src.includes('youtube.com') || src.includes('youtu.be');
+    const isVimeo = src.includes('vimeo.com');
+    
+    if (isYouTube) {
+      // Extract video ID and create embed URL
+      const videoId = src.includes('youtu.be') 
+        ? src.split('youtu.be/')[1]?.split('?')[0]
+        : src.split('watch?v=')[1]?.split('&')[0];
+      
+      return (
+        <Card className="my-6">
+          <CardContent className="p-0">
+            <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title={title || "Demo Video"}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                {...props}
+              />
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    if (isVimeo) {
+      // Extract video ID from Vimeo URL
+      const videoId = src.split('vimeo.com/')[1]?.split('?')[0];
+      
+      return (
+        <Card className="my-6">
+          <CardContent className="p-0">
+            <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+              <iframe
+                src={`https://player.vimeo.com/video/${videoId}`}
+                title={title || "Demo Video"}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full rounded-lg"
+                {...props}
+              />
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    // Default to HTML5 video for direct video files
+    return (
+      <Card className="my-6">
+        <CardContent className="p-0">
+          <video
+            src={src}
+            controls
+            width={width}
+            height={height}
+            className="w-full rounded-lg"
+            title={title}
+            {...props}
+          >
+            Your browser does not support the video tag.
+          </video>
+        </CardContent>
+      </Card>
+    );
+  },
 };
 
 interface MDXContentProps {
