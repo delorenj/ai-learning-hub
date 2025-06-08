@@ -1,68 +1,84 @@
 #!/bin/bash
 
-# Deployment script for AI Hub to DigitalOcean
+# Enhanced deployment script for AI Hub
+# Supports content-only or full deployment
 
 set -e
 
-DROPLET_NAME="trinote-proxy"
 DROPLET_IP="104.248.3.174"
-APP_NAME="ai-hub"
-DEPLOY_PATH="/opt/ai-hub"
+REMOTE_USER="delorenj"
+REMOTE_PATH="/home/delorenj/docker/stacks/ai/ai-learning-hub"
+CONTENT_PATH="./content"
+REMOTE_CONTENT_PATH="${REMOTE_PATH}/content"
+
+# Parse command line arguments
+CONTENT_ONLY=false
+FORCE_REBUILD=false
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --content-only) CONTENT_ONLY=true ;;
+        --force-rebuild) FORCE_REBUILD=true ;;
+        *) echo "Unknown parameter: $1"; exit 1 ;;
+    esac
+    shift
+done
 
 echo "🚀 Starting deployment of AI Hub..."
 
-# Check if doctl is installed
-if ! command -v doctl &>/dev/null; then
-    echo "❌ doctl is not installed. Please install it first."
-    exit 1
-fi
-
-# Check if we can connect to the droplet
+# Check connection to droplet
 echo "🔍 Checking connection to droplet..."
-if ! doctl compute droplet list | grep -q "$DROPLET_NAME"; then
-    echo "❌ Cannot find droplet: $DROPLET_NAME"
+if ! ssh -q ${REMOTE_USER}@${DROPLET_IP} exit; then
+    echo "❌ Cannot connect to droplet at ${DROPLET_IP}"
     exit 1
 fi
 
-echo "📦 Building Docker image locally..."
-docker build -t $APP_NAME .
-
-echo "💾 Saving Docker image..."
-docker save $APP_NAME | gzip >${APP_NAME}.tar.gz
-
-echo "📤 Uploading files to droplet..."
-scp -o StrictHostKeyChecking=no ${APP_NAME}.tar.gz root@$DROPLET_IP:/tmp/
-scp -o StrictHostKeyChecking=no docker-compose.yml root@$DROPLET_IP:/tmp/
-
-echo "🚀 Deploying on droplet..."
-ssh -o StrictHostKeyChecking=no root@$DROPLET_IP <<EOF
-    # Create deployment directory
-    mkdir -p $DEPLOY_PATH
-    cd $DEPLOY_PATH
-
-    # Stop existing containers
-    if [ -f docker-compose.yml ]; then
-        docker-compose down || true
-    fi
-
-    # Load new image
-    docker load < /tmp/${APP_NAME}.tar.gz
-
-    # Copy new docker-compose file
-    cp /tmp/docker-compose.yml .
-
-    # Start new containers
-    docker-compose up -d
-
-    # Clean up
-    rm /tmp/${APP_NAME}.tar.gz /tmp/docker-compose.yml
-
-    echo "✅ Deployment completed!"
-    echo "🌐 Application should be available at: http://$DROPLET_IP:3000"
+if [ "$CONTENT_ONLY" = true ]; then
+    echo "📚 Deploying content updates only..."
+    
+    # Sync content directory to remote
+    echo "📤 Syncing content to droplet..."
+    rsync -avz --delete ${CONTENT_PATH}/ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_CONTENT_PATH}/
+    
+    echo "✅ Content deployment completed!"
+else
+    echo "🔄 Performing full deployment with git pull and rebuild..."
+    
+    # SSH to server and perform deployment
+    ssh ${REMOTE_USER}@${DROPLET_IP} <<EOF
+        cd ${REMOTE_PATH}
+        
+        echo "📥 Pulling latest changes..."
+        git pull
+        
+        # Check if we need to rebuild
+        NEEDS_REBUILD=false
+        if [ "$FORCE_REBUILD" = true ]; then
+            NEEDS_REBUILD=true
+        else
+            # Check if package.json or Dockerfile changed
+            if git diff --name-only HEAD@{1} HEAD | grep -q -E 'package.json|Dockerfile|next.config.js|tailwind.config.ts'; then
+                NEEDS_REBUILD=true
+            fi
+        fi
+        
+        if [ "\$NEEDS_REBUILD" = true ]; then
+            echo "🏗️ Rebuilding application..."
+            cd /home/delorenj/docker/stacks/ai
+            docker compose down ai-hub
+            docker compose build ai-hub
+            docker compose up -d ai-hub
+            echo "✅ Rebuild completed!"
+        else
+            echo "🔄 Restarting container to apply changes..."
+            cd /home/delorenj/docker/stacks/ai
+            docker compose restart ai-hub
+        fi
+        
+        echo "🔍 Checking container status..."
+        docker ps | grep ai-hub
 EOF
-
-# Clean up local files
-rm ${APP_NAME}.tar.gz
+fi
 
 echo "🎉 Deployment completed successfully!"
-echo "🌐 The AI Hub is now running at: http://$DROPLET_IP:3000"
+echo "🌐 The AI Hub is now running at: http://${DROPLET_IP}:3000"
