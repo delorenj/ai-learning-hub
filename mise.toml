@@ -49,5 +49,17 @@ run = "./scripts/deploy-simple.sh"
 description = "Check deployment health"
 run = "./scripts/health-check.sh"
 
+[tasks.content-deploy-dev]
+description = "Deploy content in development mode"
+run = "./scripts/content-deploy.sh --dev"
+
+[tasks.content-deploy-prod]
+description = "Deploy content in production mode"
+run = "./scripts/content-deploy.sh --prod"
+
+[tasks.mdx-prepare]
+description = "Prepare markdown file for MDX format"
+run = "./scripts/mdx-prepare.sh"
+
 # Environment variables are set per task
 # NODE_ENV will be set automatically by Next.js
