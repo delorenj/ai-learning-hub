@@ -52,7 +52,9 @@ RUN chown nextjs:nodejs .next
 # Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/content ./content
+# DO NOT copy content - it will be mounted at runtime
+# Create empty content directory structure for mounting
+RUN mkdir -p ./content/howto ./content/tipsnips ./content/resources
 
 USER nextjs
 
