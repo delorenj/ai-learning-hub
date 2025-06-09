@@ -24,7 +24,7 @@ export default function Home() {
           
           <div className="flex items-center gap-3 mb-6">
             <Brain className="h-10 w-10 text-blue-500 dark:text-blue-400" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold text-gray-900 dark:text-white">
               AI Learning Hub
             </h1>
           </div>

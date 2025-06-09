@@ -12,7 +12,7 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ai-hub.rule=Host(`aihub.delo.sh`)"
+      - "traefik.http.routers.ai-hub.rule=Host(`hub.triumphbox.dev`)"
       - "traefik.http.routers.ai-hub.entrypoints=websecure"
       - "traefik.http.routers.ai-hub.tls.certresolver=letsencrypt"
       - "traefik.http.services.ai-hub.loadbalancer.server.port=3000"

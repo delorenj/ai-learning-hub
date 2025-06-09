@@ -3,7 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
-// import { StagewiseToolbar } from "@/components/stagewise-toolbar";
+import { StagewiseToolbar } from "@/components/stagewise-toolbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -45,7 +45,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
-        {/* <StagewiseToolbar /> */}
+        <StagewiseToolbar />
       </body>
     </html>
   );
