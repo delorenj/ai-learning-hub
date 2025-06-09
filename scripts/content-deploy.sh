@@ -34,7 +34,7 @@ elif [ "$MODE" == "prod" ]; then
   # Rebuild and restart Docker container
   echo "Rebuilding and restarting Docker container..."
   docker compose down
-  docker compose build
+  docker compose build --no-cache
   docker compose up -d
   
   # If deploy.sh exists, use it for production deployment
