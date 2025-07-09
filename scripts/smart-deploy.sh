@@ -3,9 +3,9 @@
 
 set -e
 
-DROPLET_IP="104.248.3.174"
+DROPLET_IP="triumphbox.dev"
 REMOTE_USER="delorenj"
-REMOTE_PATH="/home/delorenj/docker/stacks/ai/ai-learning-hub"
+REMOTE_PATH="/home/delorenj/code/ai-learning-hub"
 
 echo "🧠 Smart Deployment Starting..."
 
@@ -17,26 +17,26 @@ NEEDS_REBUILD=false
 REBUILD_REASON=""
 
 if echo "$CHANGED_FILES" | grep -qE "(package\.json|pnpm-lock\.yaml|Dockerfile|next\.config\.js|tsconfig\.json)"; then
-    NEEDS_REBUILD=true
-    REBUILD_REASON="Dependencies or config changed"
+  NEEDS_REBUILD=true
+  REBUILD_REASON="Dependencies or config changed"
 elif echo "$CHANGED_FILES" | grep -qE "(src/|components/|app/|pages/|lib/|utils/)"; then
-    NEEDS_REBUILD=true
-    REBUILD_REASON="Source code changed"
+  NEEDS_REBUILD=true
+  REBUILD_REASON="Source code changed"
 elif [ -z "$CHANGED_FILES" ]; then
-    # No git changes, check if forced
-    if [ "$1" == "--force" ]; then
-        NEEDS_REBUILD=true
-        REBUILD_REASON="Forced rebuild"
-    fi
+  # No git changes, check if forced
+  if [ "$1" == "--force" ]; then
+    NEEDS_REBUILD=true
+    REBUILD_REASON="Forced rebuild"
+  fi
 fi
 
 if [ "$NEEDS_REBUILD" = true ]; then
-    echo "🏗️ Rebuild needed: $REBUILD_REASON"
-    echo "📤 Syncing all files..."
-    rsync -avz --exclude='.git' --exclude='node_modules' --exclude='.next' \
-        ./ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/
-    
-    ssh ${REMOTE_USER}@${DROPLET_IP} << 'EOF'
+  echo "🏗️ Rebuild needed: $REBUILD_REASON"
+  echo "📤 Syncing all files..."
+  rsync -avz --exclude='.git' --exclude='node_modules' --exclude='.next' \
+    ./ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/
+
+  ssh ${REMOTE_USER}@${DROPLET_IP} <<'EOF'
         cd /home/delorenj/docker/stacks/ai
         echo "🐳 Rebuilding Docker image..."
         docker compose down ai-hub
@@ -45,9 +45,9 @@ if [ "$NEEDS_REBUILD" = true ]; then
         echo "✅ Rebuild complete!"
 EOF
 else
-    echo "📚 Only content changed - using fast sync..."
-    rsync -avz ./content/ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/content/
-    echo "✅ Content updated - no rebuild needed!"
+  echo "📚 Only content changed - using fast sync..."
+  rsync -avz ./content/ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/content/
+  echo "✅ Content updated - no rebuild needed!"
 fi
 
 echo "🎉 Deployment complete!"
