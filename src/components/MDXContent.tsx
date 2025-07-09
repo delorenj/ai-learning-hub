@@ -4,9 +4,30 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 // Custom MDX components for rich content
 const mdxComponents = {
+  // Custom image component with proper handling
+  img: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    if (!src) return null;
+    
+    return (
+      <div className="my-6">
+        <img
+          src={src}
+          alt={alt || ""}
+          className="rounded-lg mx-auto max-w-full h-auto"
+          loading="lazy"
+          {...props}
+        />
+        {alt && alt !== "" && (
+          <p className="text-center text-sm text-gray-500 mt-2">{alt}</p>
+        )}
+      </div>
+    );
+  },
+  
   // Custom code block with syntax highlighting
   pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
     <Card className="my-4">
