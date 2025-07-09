@@ -37,7 +37,7 @@ if [ "$NEEDS_REBUILD" = true ]; then
     ./ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/
 
   ssh ${REMOTE_USER}@${DROPLET_IP} <<'EOF'
-        cd /home/delorenj/docker/stacks/ai
+        cd /home/delorenj/code/ai-learning-hub
         echo "🐳 Rebuilding Docker image..."
         docker compose down ai-hub
         docker compose build ai-hub
@@ -47,6 +47,7 @@ EOF
 else
   echo "📚 Only content changed - using fast sync..."
   rsync -avz ./content/ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/content/
+  rsync -avz ./public/ ${REMOTE_USER}@${DROPLET_IP}:${REMOTE_PATH}/public/
   echo "✅ Content updated - no rebuild needed!"
 fi
 
