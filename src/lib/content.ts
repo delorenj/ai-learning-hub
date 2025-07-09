@@ -34,7 +34,11 @@ export interface SerializedContentItem extends Omit<ContentItem, 'content'> {
   mdxSource: MDXRemoteSerializeResult;
 }
 
-const CONTENT_DIR = path.join(process.cwd(), 'content');
+// In production standalone mode, content is mounted at /app/content
+// In development, it's relative to process.cwd()
+const CONTENT_DIR = process.env.NODE_ENV === 'production' 
+  ? '/app/content'
+  : path.join(process.cwd(), 'content');
 const CONTENT_CATEGORIES = ['howto', 'tipsnips', 'resources'];
 
 /**

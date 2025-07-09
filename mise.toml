@@ -1,5 +1,5 @@
 [tools]
-node = "20"
+node = "24"
 
 [tasks.dev]
 description = "Start development server"
@@ -60,6 +60,18 @@ run = "./scripts/content-deploy.sh --prod"
 [tasks.mdx-prepare]
 description = "Prepare markdown file for MDX format"
 run = "./scripts/mdx-prepare.sh"
+
+[tasks.deploy-content]
+description = "Deploy content changes without rebuilding (quick)"
+run = "./scripts/update-content.sh"
+
+[tasks.content]
+alias = "deploy-content"
+description = "Alias for deploy-content"
+
+[tasks.update-content]
+description = "Update content (works both locally and on server)"
+run = "./scripts/update-content.sh"
 
 # Environment variables are set per task
 # NODE_ENV will be set automatically by Next.js

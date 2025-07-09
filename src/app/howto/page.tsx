@@ -3,6 +3,10 @@ import Navbar from "@/components/Navbar";
 import { getContentItems } from "@/lib/content";
 import Link from "next/link";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function HowToPage() {
   // Get actual content from filesystem instead of mock data
   const howtoItems = getContentItems('howto');
