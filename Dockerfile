@@ -1,60 +1,56 @@
-FROM node:18-alpine AS base
+# Use BuildKit for better caching
+# syntax=docker/dockerfile:1
 
-# Install dependencies only when needed
+FROM node:18-alpine AS base
+# Install pnpm globally in base image
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Dependencies stage - only rebuilds when package files change
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Install dependencies
+# Copy only package files first (better cache utilization)
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+# Use cache mount for pnpm store
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-# Rebuild the source code only when needed
+# Builder stage
 FROM base AS builder
 WORKDIR /app
+
+# Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
+
+# Copy source files
 COPY . .
 
-# Create necessary directories
-RUN mkdir -p public
-RUN mkdir -p content/tipsnips content/resources
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
+# Disable telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Install pnpm
-RUN npm install -g pnpm
+# Build with cache mount for Next.js
+RUN --mount=type=cache,target=/app/.next/cache \
+    pnpm run build
 
-# Build the application
-RUN pnpm run build
-
-# Production image, copy all the files and run next
+# Runner stage - minimal production image
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Create user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
+# Copy built application
 COPY --from=builder /app/public ./public
-
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Automatically leverage output traces to reduce image size
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-# DO NOT copy content - it will be mounted at runtime
-# Create empty content directory structure for mounting
-RUN mkdir -p ./content/howto ./content/tipsnips ./content/resources
+
+# Create content directory structure
+RUN mkdir -p ./content/howto ./content/tipsnips ./content/resources && \
+    chown -R nextjs:nodejs ./content
 
 USER nextjs
 
