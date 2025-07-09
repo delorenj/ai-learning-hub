@@ -1,0 +1,14 @@
+[tasks]
+dev = "npm run dev"
+build = "npm run build"
+lint = "npm run lint"
+docker-build = "./scripts/build-with-buildkit.sh"
+docker-up = "./scripts/build-with-buildkit.sh --up"
+deploy = "./scripts/deploy-simple.sh"
+deploy-content = "./scripts/deploy-content.sh"
+info = "echo 'AI Learning Hub - Development Tasks'"
+
+[env]
+AI_HUB_PORT = "3001"
+AI_HUB_INTERNAL_PORT = "3000"
+TRAEFIK_HOST = "ai-learning-hub.localhost"
