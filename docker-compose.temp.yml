@@ -3,6 +3,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+        - type=registry,ref=ghcr.io/delorenj/ai-hub:buildcache
+        - type=registry,ref=ghcr.io/delorenj/ai-hub:buildcache,mode=max
     ports:
       - "${AI_HUB_PORT:-3001}:3000"
     restart: unless-stopped
