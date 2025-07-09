@@ -43,9 +43,28 @@ When using mise, you can run `mise tasks` to see all available tasks. Key tasks 
 - `mise lint` - Run ESLint
 - `mise docker-build` - Build Docker image
 - `mise deploy` - Deploy to DigitalOcean
+- `mise deploy-content` - Deploy content changes without rebuilding (quick)
 - `mise info` - Display project information
 
 See `.mise.toml` for the complete list of available tasks.
+
+## Content Deployment
+
+To deploy content changes without rebuilding the Docker image:
+
+```bash
+# Quick content-only deployment (recommended)
+mise deploy-content
+# or
+./scripts/deploy-content.sh
+
+# This will:
+# 1. Sync your local content/ directory to the server
+# 2. Restart the container to pick up changes
+# 3. Complete in ~30 seconds vs ~5 minutes for full rebuild
+```
+
+The content is mounted as a volume in the Docker container, so changes to MDX files in the `content/` directory can be deployed without rebuilding the entire application.
 
 ## Chatbot Integration
 

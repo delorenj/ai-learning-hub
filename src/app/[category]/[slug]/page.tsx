@@ -1,4 +1,4 @@
-import { getContentFiles, getSerializedContentItem, getContentCategories } from '@/lib/content';
+import { getSerializedContentItem } from '@/lib/content';
 import MDXContent from '@/components/MDXContent';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,19 +17,9 @@ interface ContentPageProps {
   };
 }
 
-export async function generateStaticParams() {
-  const categories = getContentCategories();
-  const paths: { category: string; slug: string }[] = [];
-  
-  for (const category of categories) {
-    const slugs = getContentFiles(category);
-    for (const slug of slugs) {
-      paths.push({ category, slug });
-    }
-  }
-  
-  return paths;
-}
+// Force dynamic rendering - content will be loaded on each request
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: ContentPageProps): Promise<Metadata> {
   const resolvedParams = await params;

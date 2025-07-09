@@ -3,6 +3,10 @@ import DynamicCard from "@/components/DynamicCard";
 import { getContentItems } from "@/lib/content";
 import Navbar from "@/components/Navbar";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function ResourcesPage() {
   const resourceItems = getContentItems('resources');
   
