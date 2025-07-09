@@ -41,10 +41,6 @@ run = "scripts/port-check.sh"
 description = "Stop Docker containers"
 run = "docker compose down"
 
-[tasks.deploy]
-description = "Deploy to production"
-run = "./scripts/deploy-simple.sh"
-
 [tasks.health-check]
 description = "Check deployment health"
 run = "./scripts/health-check.sh"
@@ -64,6 +60,10 @@ run = "./scripts/mdx-prepare.sh"
 [tasks.deploy-content]
 description = "Deploy content changes without rebuilding (quick)"
 run = "./scripts/update-content.sh"
+
+[tasks.deploy]
+description = "Deploy site to production"
+run = "./scripts/smart-deploy.sh"
 
 [tasks.content]
 alias = "deploy-content"
