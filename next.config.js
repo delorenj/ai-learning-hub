@@ -16,6 +16,10 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  // Exclude content directory from standalone output
+  outputFileTracingExcludes: {
+    '*': ['content/**/*'],
+  },
 };
 
 module.exports = nextConfig;
